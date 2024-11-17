@@ -14,7 +14,7 @@
         <tbody>
             <?php
             try {
-                $sql = "SELECT * FROM exercise WHERE deleted_at IS NULL";
+                $sql = "SELECT * FROM exercise WHERE deleted_at IS NULL;";
                 $stmt = $conn->query($sql);
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo "<tr>";

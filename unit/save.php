@@ -8,10 +8,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $updated_by = 2;
 
     try {
-        $sql = "INSERT INTO exercise (name, active, created_by, updated_by) VALUES (:name, :active, :created_by, :updated_by);";
+        $sql = "INSERT INTO unit (name, created_by, updated_by) VALUES (:name, :created_by, :updated_by);";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':active', $active);
         $stmt->bindParam(':created_by', $created_by);
         $stmt->bindParam(':updated_by', $updated_by);
         $stmt->execute();

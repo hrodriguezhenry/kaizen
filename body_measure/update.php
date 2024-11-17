@@ -1,13 +1,25 @@
 <?php include '../includes/header.php'; ?>
 
 <div class="container">
-    <h1>Editar Hábito</h1>
+    <h1>Editar Medidas de Cuerpo</h1>
     <?php
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
         try {
-            $sql = "SELECT * FROM habit WHERE deleted_at IS NULL AND id = :id;";
+            $sql =
+                "SELECT bm.id,
+                    bm.`name`,
+                    u.id AS unit_id,
+                    u.`name` AS unit_name,
+                    bm.`active`
+                FROM body_measure AS bm
+                LEFT JOIN unit AS u
+                ON bm.unit_id = u.id
+                AND u.deleted_at IS NULL
+                WHERE bm.deleted_at IS NULL
+                AND bm.id = :id;
+            ";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
@@ -20,13 +32,15 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id = $_POST["id"];
         $name = $_POST["name"];
+        $unit_id = $_POST["unit"];
         $active = $_POST["active"];
         $updated_by = 2;
 
         try {
-            $sql = "UPDATE habit SET name = :name, active = :active, updated_by = :updated_by WHERE id = :id;";
+            $sql = "UPDATE body_measure SET name = :name, unit_id = :unit_id, active = :active, updated_by = :updated_by WHERE id = :id;";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':unit_id', $unit_id);
             $stmt->bindParam(':active', $active);
             $stmt->bindParam(':updated_by', $updated_by);
             $stmt->bindParam(':id', $id);
@@ -43,6 +57,28 @@
         <div class="form-group mb-1">
             <label for="name">Nombre:</label>
             <input type="text" class="form-control" id="name" name="name" value="<?php echo $data['name']; ?>" required>
+        </div>
+        <div class="form-group mb-1">
+            <label for="name">Unidad:</label>
+            <select class="form-control form-select" id="unit" name="unit" required>
+                <?php
+                try {
+                    $sql = "SELECT id, name FROM unit WHERE deleted_at IS NULL;"; 
+                    $stmt = $conn->query($sql);
+
+                    if ($stmt->rowCount() > 0) {
+                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            $selected = ($row['id'] == $data['unit_id']) ? 'selected' : ''; 
+                            echo "<option value='" . $row['id'] . "' $selected>" . $row['name'] . "</option>"; 
+                        }
+                    } else {
+                        echo "<option value='' disabled selected>Sin opciones</option>";
+                    }
+                } catch(PDOException $e) {
+                    echo "Error: " . $e->getMessage();
+                }
+                ?>
+            </select>
         </div>
         <div class="form-group mb-1">
             <label for="active">Estado:</label>

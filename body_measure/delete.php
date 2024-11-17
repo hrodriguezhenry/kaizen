@@ -8,7 +8,7 @@ if (isset($_GET['id'])) {
     // Verificar si se ha enviado el formulario de confirmación
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         try {
-			$sql = "UPDATE exercise SET deleted_at = CURRENT_TIMESTAMP(), deleted_by = :deleted_by WHERE id = :id;";
+			$sql = "UPDATE body_measure SET deleted_at = CURRENT_TIMESTAMP(), deleted_by = :deleted_by WHERE id = :id;";
 			$stmt = $conn->prepare($sql);
             $stmt->bindParam(':deleted_by', $deleted_by);
 			$stmt->bindParam(':id', $id);
@@ -22,7 +22,7 @@ if (isset($_GET['id'])) {
     } else { 
       // Mostrar formulario de confirmación
         try {
-            $sql = "SELECT * FROM exercise WHERE id = :id;";
+            $sql = "SELECT * FROM body_measure WHERE id = :id;";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
@@ -35,7 +35,7 @@ if (isset($_GET['id'])) {
 
             <div class="container">
                 <h1>Eliminar Ejercicio</h1>
-                <p>¿Estás seguro de que quieres eliminar el ejercicio: <strong><?php echo $data['name']; ?></strong>?</p>
+                <p>¿Estás seguro de que quieres eliminar la medida de cuerpo: <strong><?php echo $data['name']; ?></strong>?</p>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])."?id=".$id; ?>" method="post">
                     <button type="submit" class="btn btn-danger">Eliminar</button>
                     <a href="read.php" class="btn btn-secondary">Cancelar</a>

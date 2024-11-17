@@ -7,11 +7,11 @@
         $id = $_GET['id'];
 
         try {
-            $sql = "SELECT * FROM exercise WHERE deleted_at IS NULL AND id = :id";
+            $sql = "SELECT * FROM exercise WHERE deleted_at IS NULL AND id = :id;";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
-            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch(PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
@@ -24,7 +24,7 @@
         $updated_by = 2;
 
         try {
-            $sql = "UPDATE exercise SET name = :name, active = :active, updated_by = :updated_by WHERE id = :id";
+            $sql = "UPDATE exercise SET name = :name, active = :active, updated_by = :updated_by WHERE id = :id;";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':active', $active);
@@ -39,16 +39,16 @@
     }
     ?>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <input type="hidden" name="id" value="<?php echo $usuario['id']; ?>">
+        <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
         <div class="form-group mb-1">
             <label for="name">Nombre:</label>
-            <input type="text" class="form-control" id="name" name="name" value="<?php echo $usuario['name']; ?>" required>
+            <input type="text" class="form-control" id="name" name="name" value="<?php echo $data['name']; ?>" required>
         </div>
         <div class="form-group mb-1">
             <label for="active">Estado:</label>
             <select class="form-control form-select" id="active" name="active" required>
-                <option value="1" <?php echo ($usuario['active'] == 1) ? 'selected' : ''; ?>>Activo</option>
-                <option value="0" <?php echo ($usuario['active'] == 0) ? 'selected' : ''; ?>>Inactivo</option>
+                <option value="1" <?php echo ($data['active'] == 1) ? 'selected' : ''; ?>>Activo</option>
+                <option value="0" <?php echo ($data['active'] == 0) ? 'selected' : ''; ?>>Inactivo</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary mt-2">Actualizar</button>

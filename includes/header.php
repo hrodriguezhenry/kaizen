@@ -15,17 +15,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Usuarios
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/usuarios/crear.php">Crear Usuario</a></li>
-                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/usuarios/leer.php">Listar Usuarios</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Ejercicio
+                            Ejercicios
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="<?= SERVERURL; ?>/exercise/create.php">Crear Ejercicio</a></li>
@@ -34,11 +25,29 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Hábito
+                            Hábitos
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="<?= SERVERURL; ?>/habit/create.php">Crear Hábito</a></li>
                             <li><a class="dropdown-item" href="<?= SERVERURL; ?>/habit/read.php">Listar Hábitos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Unidades
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/unit/create.php">Crear Unidad</a></li>
+                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/unit/read.php">Listar Unidades</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Medidas
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/body_measure/create.php">Crear Medida</a></li>
+                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/body_measure/read.php">Listar Medidas</a></li>
                         </ul>
                     </li>
                 </ul>
