@@ -43,6 +43,15 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Unidades Det
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/unit_detail/create.php">Crear Unidad Det</a></li>
+                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/unit_detail/read.php">Listar Unidades Det</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Medidas
                         </a>
                         <ul class="dropdown-menu">

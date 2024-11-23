@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
             <?php include '../includes/header.php'; ?>  
 
             <div class="container">
-                <h1>Eliminar Unidad de Medida</h1>
+                <h1>Eliminar Unidad de Medida Detalle</h1>
                 <p>¿Estás seguro de que quieres eliminar la unidad de medida: <strong><?php echo $data['name']; ?></strong>?</p>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])."?id=".$id; ?>" method="post">
                     <button type="submit" class="btn btn-danger">Eliminar</button>
