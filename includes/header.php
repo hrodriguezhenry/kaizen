@@ -1,5 +1,8 @@
-<?php require_once 'config.php'; ?>
-<?php require_once 'conexion.php'; ?>
+<?php
+ob_start();
+require_once 'config.php';
+require_once 'conexion.php';
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -52,11 +55,29 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Medidas
+                            Medidas Cuerpo
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/body_measure/create.php">Crear Medida</a></li>
-                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/body_measure/read.php">Listar Medidas</a></li>
+                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/body_measure/create.php">Crear Medida Cuerpo</a></li>
+                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/body_measure/read.php">Listar Medidas Cuerpo</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pesos
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/weight/create.php">Crear Peso</a></li>
+                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/weight/read.php">Listar Pesos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Medida
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/measure/create.php">Ingresar Medida</a></li>
+                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/measure/read.php">Listar Medidas</a></li>
                         </ul>
                     </li>
                 </ul>

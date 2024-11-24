@@ -1,5 +1,4 @@
 <?php include '../includes/header.php'; ?>
-
 <div class="container">
     <h1>Crear Hábito</h1>
     <form action="<?php echo htmlspecialchars('save.php'); ?>" method="post">
@@ -17,5 +16,4 @@
         <button type="submit" class="btn btn-primary mt-2">Guardar</button>
     </form>
 </div>
-
 <?php include '../includes/footer.php'; ?>

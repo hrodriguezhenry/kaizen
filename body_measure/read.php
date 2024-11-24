@@ -1,5 +1,4 @@
 <?php include '../includes/header.php'; ?>
-
 <div class="container">
     <h1>Listar Medidas de Cuerpo</h1>
     <table class="table">
@@ -47,5 +46,4 @@
         </tbody>
     </table>
 </div>
-
 <?php include '../includes/footer.php'; ?>

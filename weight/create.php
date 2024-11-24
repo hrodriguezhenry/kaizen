@@ -1,17 +1,21 @@
 <?php include '../includes/header.php'; ?>
 <div class="container">
-    <h1>Crear Medida de Cuerpo</h1>
+    <h1>Crear Peso</h1>
     <form action="<?php echo htmlspecialchars('save.php'); ?>" method="post">
         <div class="form-group mb-1">
             <label for="name">Nombre:</label>
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
         <div class="form-group mb-1">
-            <label for="unit">Unidad:</label>
-            <select class="form-control form-select" id="unit" name="unit" required>
+            <label for="weight">Peso:</label>
+            <input type="number" class="form-control" id="weight" name="weight" step="0.01" min="1" required>
+        </div>
+        <div class="form-group mb-1">
+            <label for="unit_detail">Unidad Detalle:</label>
+            <select class="form-control form-select" id="unit_detail" name="unit_detail" required>
                 <?php
                 try {
-                    $sql = "SELECT id, name FROM unit WHERE deleted_at IS NULL AND active = 1;";
+                    $sql = "SELECT id, name FROM unit_detail WHERE deleted_at IS NULL AND active = 1;";
                     $stmt = $conn->query($sql);
                     
                     if ($stmt->rowCount() > 0) {

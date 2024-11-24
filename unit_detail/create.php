@@ -1,5 +1,4 @@
 <?php include '../includes/header.php'; ?>
-
 <div class="container">
     <h1>Crear Unidad de Medida Detalle</h1>
     <form action="<?php echo htmlspecialchars('save.php'); ?>" method="post">
@@ -16,7 +15,7 @@
             <select class="form-control form-select" id="unit" name="unit" required>
                 <?php
                 try {
-                    $sql = "SELECT id, name FROM unit WHERE deleted_at IS NULL;";
+                    $sql = "SELECT id, name FROM unit WHERE deleted_at IS NULL AND active = 1;";
                     $stmt = $conn->query($sql);
                     
                     if ($stmt->rowCount() > 0) {
@@ -42,5 +41,4 @@
         <button type="submit" class="btn btn-primary mt-2">Guardar</button>
     </form>
 </div>
-
 <?php include '../includes/footer.php'; ?>

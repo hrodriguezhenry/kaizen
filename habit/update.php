@@ -1,5 +1,4 @@
 <?php include '../includes/header.php'; ?>
-
 <div class="container">
     <h1>Editar Hábito</h1>
     <?php
@@ -54,5 +53,4 @@
         <button type="submit" class="btn btn-primary mt-2">Actualizar</button>
     </form>
 </div>
-
 <?php include '../includes/footer.php'; ?>

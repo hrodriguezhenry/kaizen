@@ -1,24 +1,24 @@
 <?php include '../includes/header.php'; ?>
 <div class="container">
-    <h1>Editar Unidad de Medida Detalle</h1>
+    <h1>Editar Peso</h1>
     <?php
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
         try {
             $sql =
-                "SELECT ud.id,
-                    ud.`name`,
-                    ud.abbreviation,
-                    u.id AS unit_id,
-                    u.`name` AS unit_name,
-                    ud.`active`
-                FROM unit_detail AS ud
-                LEFT JOIN unit AS u
-                ON ud.unit_id = u.id
-                AND u.deleted_at IS NULL
-                WHERE ud.deleted_at IS NULL
-                AND ud.id = :id;
+                "SELECT w.id,
+                    w.`name`,
+                    w.weight,
+                    ud.id AS unit_detail_id,
+                    ud.`name` AS unit_name,
+                    w.`active`
+                FROM weight AS w
+                LEFT JOIN unit_detail AS ud
+                ON w.unit_detail_id = ud.id
+                AND ud.deleted_at IS NULL
+                WHERE w.deleted_at IS NULL
+                AND w.id = :id;
             ";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':id', $id);
@@ -27,22 +27,22 @@
         } catch(PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
-      }
+    }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id = $_POST["id"];
         $name = $_POST["name"];
-        $abbreviation = $_POST["abbreviation"];
-        $unit_id = $_POST["unit"];
+        $weight = $_POST["weight"];
+        $unit_detail_id = $_POST["unit_detail"];
         $active = $_POST["active"];
         $updated_by = 2;
 
         try {
-            $sql = "UPDATE unit_detail SET name = :name, abbreviation = :abbreviation, unit_id = :unit_id, active = :active, updated_by = :updated_by WHERE id = :id;";
+            $sql = "UPDATE weight SET name = :name, weight = :weight, unit_detail_id = :unit_detail_id, active = :active, updated_by = :updated_by WHERE id = :id;";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':name', $name);
-            $stmt->bindParam(':abbreviation', $abbreviation);
-            $stmt->bindParam(':unit_id', $unit_id);
+            $stmt->bindParam(':weight', $weight);
+            $stmt->bindParam(':unit_detail_id', $unit_detail_id);
             $stmt->bindParam(':active', $active);
             $stmt->bindParam(':updated_by', $updated_by);
             $stmt->bindParam(':id', $id);
@@ -61,20 +61,20 @@
             <input type="text" class="form-control" id="name" name="name" value="<?php echo $data['name']; ?>" required>
         </div>
         <div class="form-group mb-1">
-            <label for="abbreviation">Abreviatura:</label>
-            <input type="text" class="form-control" id="abbreviation" name="abbreviation" value="<?php echo $data['abbreviation']; ?>" required>
+            <label for="weight">Peso:</label>
+            <input type="number" class="form-control" id="weight" name="weight" value="<?php echo $data['weight']; ?>" step="0.01" min="1" required>
         </div>
         <div class="form-group mb-1">
-            <label for="unit">Unidad:</label>
-            <select class="form-control form-select" id="unit" name="unit" required>
+            <label for="unit_detail">Unidad:</label>
+            <select class="form-control form-select" id="unit_detail" name="unit_detail" required>
                 <?php
                 try {
-                    $sql = "SELECT id, name FROM unit WHERE deleted_at IS NULL AND active = 1;"; 
+                    $sql = "SELECT id, name FROM unit_detail WHERE deleted_at IS NULL AND active = 1;"; 
                     $stmt = $conn->query($sql);
 
                     if ($stmt->rowCount() > 0) {
                         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                            $selected = ($row['id'] == $data['unit_id']) ? 'selected' : ''; 
+                            $selected = ($row['id'] == $data['unit_detail_id']) ? 'selected' : ''; 
                             echo "<option value='" . $row['id'] . "' $selected>" . $row['name'] . "</option>"; 
                         }
                     } else {
