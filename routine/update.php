@@ -25,7 +25,7 @@ if (isset($_GET['error']) && $_GET['error'] == 'duplicate') {
                 LEFT JOIN unit_detail AS ud
                 ON m.unit_detail_id = ud.id
                 AND ud.deleted_at IS NULL
-                WHERE m.deleted_at IS NULL
+                WHERE bm.deleted_at IS NULL
                 AND m.id = :id;
             ";
             $stmt = $conn->prepare($sql);

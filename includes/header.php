@@ -80,6 +80,15 @@ require_once 'conexion.php';
                             <li><a class="dropdown-item" href="<?= SERVERURL; ?>/measure/read.php">Listar Medidas</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Rutina
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/routine/create.php">Ingresar Rutina</a></li>
+                            <li><a class="dropdown-item" href="<?= SERVERURL; ?>/routine/read.php">Listar Rutina</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 </div>
             </div>
